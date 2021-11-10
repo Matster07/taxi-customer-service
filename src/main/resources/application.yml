@@ -1,0 +1,23 @@
+server:
+  port: ${PORT:8091}
+  servlet:
+    context-path: /api/customer/v1
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:30829/postgresdb}
+    driverClassName: org.postgresql.Driver
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:root}
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 2000
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: update
+        generate-ddl: true
+  liquibase:
+    change-log: classpath:db.changelog/changelog-main.xml
+app:
+  integration:
+    order-service-address: ${ORDER_SERVICE_ADDRESS:localhost:8093}
